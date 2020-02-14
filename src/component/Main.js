@@ -1,5 +1,5 @@
 import React from 'react';
-import InputField, { CheckBox, RadioButtons } from './Input'
+import InputField, { CheckBox, RadioButtons, DropDown } from './Input'
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import '../App.css';
 import { toast } from 'react-toastify';
@@ -11,7 +11,8 @@ class CommonComponent extends React.Component {
       password: "",
       age: 0,
       hobbies: [],
-      gender: ""
+      gender: "",
+      occupation: ""
     },
     errors: {}
   }
@@ -69,7 +70,7 @@ class CommonComponent extends React.Component {
   handleSubmit = () => {
     const { formData, errors } = this.state;
     const requiredFields = {
-      email: "", password: "", hobbies: "", gender: ""
+      email: "", password: "", hobbies: "", gender: "", occupation: ""
     }
     let submit = false;
     Object.keys(requiredFields).forEach(data => {
@@ -104,7 +105,7 @@ class CommonComponent extends React.Component {
   }
   render() {
     const { errors } = this.state;
-    const { email, password, age, gender } = this.state.formData;
+    const { email, password, age, gender, occupation } = this.state.formData;
     const checkBoxes = [
       { id: "reading", value: "reading", label: "Reading" },
       { id: "writing", value: "writing", label: "Writing" },
@@ -114,6 +115,12 @@ class CommonComponent extends React.Component {
       { id: "male", value: "male", label: "Male" },
       { id: "female", value: "female", label: "Female" }
     ];
+    const dropDown = [
+      { value: "student", label: "Student" },
+      { value: "engineer", label: "Engineer" },
+      { value: "doctor", label: "Doctor" }
+    ]
+
     return (
       <div className="center-content">
         <Container className="mx-auto w-50 card">
@@ -185,6 +192,20 @@ class CommonComponent extends React.Component {
                   errorMsg={errors.gender}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <DropDown
+                  title="Occupation"
+                  isRequired={true}
+                  errorMsg={errors.occupation}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  options={dropDown}
+                  value={occupation}
+                  name="occupation"
                 />
               </Col>
             </Row>
