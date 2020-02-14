@@ -50,3 +50,8 @@
 .red-border{
   border-color: red;
 }
+.card{
+  border: black 2px solid;
+  border-radius: 0px;
+  box-shadow: 2px 2px black;
+}
